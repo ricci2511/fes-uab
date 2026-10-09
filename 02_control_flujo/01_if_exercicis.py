@@ -8,6 +8,9 @@
 # - Entre -67 dBm i menys de -50 dBm: bona
 # - Entre -75 dBm i menys de -67 dBm: feble
 # - Inferior a -75 dBm: molt feble
+import math
+
+
 dbm = float(input("Introdueix el nivell de senyal en dBm: "))
 if dbm >= -50:
     print("Excel·lent")
@@ -75,3 +78,99 @@ elif battery_lvl < 50:
     print("El nivell de bateria és baix")
 else:
     print("El nivell de bateria és suficient")
+
+# Exercici 6: Qualitat d'una connexió de xarxa
+# Demana la latència en mil·lisegons i el percentatge de paquets perduts.
+# Rebutja una latència negativa o una pèrdua fora del rang del 0 % al 100 %.
+# Classifica la connexió com a excel·lent si la latència és de 30 ms o menys
+# i la pèrdua és de l'1 % o menys; bona si és de 80 ms o menys i la pèrdua és
+# del 3 % o menys; acceptable si és de 150 ms o menys i la pèrdua és del 5 %
+# o menys; en qualsevol altre cas, deficient.
+latency_ms = float(input("Latencia en ms: "))
+lost_pkgs_percent = float(input("Percentatge de paquets perduts: "))
+if latency_ms < 0 or lost_pkgs_percent < 0 or lost_pkgs_percent > 100:
+    print("Connexió rebutjada")
+elif latency_ms <= 30 and lost_pkgs_percent <= 1:
+    print("Connexió excel·lent")
+elif latency_ms <= 80 and lost_pkgs_percent <= 3:
+    print("Connexió bona")
+elif latency_ms <= 150 and lost_pkgs_percent <= 5:
+    print("Connexió acceptable")
+else:
+    print("Connexió deficient")
+
+
+# Exercici 7: Cost mensual d'un pla de dades
+# Demana el tipus de pla (bàsic o plus) i el consum mensual en GB.
+# El pla bàsic costa 10 € i inclou 10 GB; cada GB addicional costa 1,50 €.
+# El pla plus costa 20 € i inclou 30 GB; cada GB addicional costa 0,75 €.
+# Rebutja un consum negatiu o un tipus de pla desconegut. Calcula i mostra el
+# cost total, tenint en compte que no es cobra l'excés si no se supera el límit.
+plan_type = input("Pla bàsic o plus? ")
+consumed_gb = float(input("Consum mensual en GB: "))
+tota_cost_eur = 0.0
+if consumed_gb < 0:
+    print("Consum invalid (negatiu)")
+elif plan_type == 'basic':
+    additional_gb = (consumed_gb - 10) if consumed_gb > 10 else 0
+    total_cost_eur = 10 + additional_gb*1.5
+    print(f'Cost total: {total_cost_eur}')
+elif plan_type == 'plus':
+    additional_gb = (consumed_gb - 30) if consumed_gb > 30 else 0
+    total_cost_eur = 20 + additional_gb*1.5
+    print(f'Cost total: {total_cost_eur}')
+else:
+    print("Pla invalid (basic o plus)")
+
+
+
+# Exercici 8: Accés a un compte de client
+# Demana si el compte està actiu, si la contrasenya és correcta i si el codi
+# de doble verificació és correcte. Demana el codi només si el compte és actiu
+# i la contrasenya és correcta. Indica si l'accés es denega perquè el compte
+# està desactivat, perquè la contrasenya és incorrecta o perquè falla el codi;
+# si totes les comprovacions necessàries són correctes, permet l'accés.
+is_acc_active = int(input("El compte està actiu? "))
+is_pass_ok = int(input("La contrasenya és correcta? "))
+is_double_verified = 0
+if is_acc_active == 0:
+    print("Accés denegat: compte no és actiu")
+elif is_pass_ok == 0:
+    print("Accés denegat: contrasenya incorrecta")
+else:
+    is_double_verified = int(input("El codi de doble verificació és correcte? "))
+    if is_double_verified == 0:
+        print("Accés denegat: codi falla")
+    else:
+        print("Accés permes")
+
+
+
+# Exercici 9: Diagnòstic d'un router
+# Demana si el router està encès, si l'indicador LOS del terminal òptic està
+# encès i si l'indicador d'Internet del router està encès. Indica primer si
+# cal encendre el router; si ja està encès, comprova si cal revisar el cable
+# de fibra (LOS encès), si cal contactar amb el proveïdor (Internet apagat) o
+# si la connexió funciona correctament. Considera els casos en aquest ordre.
+
+# EL MATEIX QUE L'EXERCISI 4
+
+
+
+# Exercici 10: Prioritat d'una incidència de xarxa
+# Demana si la incidència afecta un servei crític, el nombre d'usuaris afectats
+# i si hi ha una alternativa de connexió disponible. Rebutja un nombre negatiu
+# d'usuaris. Assigna prioritat crítica si afecta un servei crític i no hi ha
+# alternativa, o si afecta almenys 50 usuaris i no hi ha alternativa; alta si
+# afecta almenys 10 usuaris o un servei crític; en qualsevol altre cas, baixa.
+is_critical_svc_affected = input("La incidència afecta un servei crític? ")
+affected_users = int(input("Nombre d'usuaris afectats: "))
+is_alternative_available = int(input("Hi ha una alternative de connexió disponible? "))
+if affected_users < 0:
+    print("Error: introdueix un valor positiu d'usuaris")
+elif (is_alternative_available == 0) and (is_critical_svc_affected == 1 or affected_users >= 50):
+    print("Prioritat crítica!")
+elif affected_users >= 10 or is_critical_svc_affected == 1:
+    print("Prioritat alta!")
+else:
+    print("Prioritat baixa")
