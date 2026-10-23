@@ -108,13 +108,13 @@ else:
 # d'Internet del router està encès. Segons aquestes dues dades, indica si cal
 # revisar el cable de fibra, comprovar el servei del proveïdor o si la connexió
 # sembla funcionar correctament.
-los_on = int(input("Introdueix si l'indicador LOS està encès (1/0): "))
-internet_on = int(input("Introdueix si l'indicador d'Internet està encès (1/0): "))
-if los_on == 1 and internet_on == 1:
+los_on = input("Introdueix si l'indicador LOS està encès (y/n): ")
+internet_on = input("Introdueix si l'indicador d'Internet està encès (y/n): ")
+if los_on == 'y' and internet_on == 'y':
     print("La connexió sembla funcionar correctament")
-elif los_on == 1 and internet_on == 0:
+elif los_on == 'y' and internet_on == 'n':
     print("Cal revisar el cable de fibra")
-elif los_on == 0 and internet_on == 1:
+elif los_on == 'n' and internet_on == 'y':
     print("Cal revisar el servei del proveïdor")
 else:
     print("No s'han introduït valors vàlids")
@@ -187,16 +187,16 @@ else:
 # i la contrasenya és correcta. Indica si l'accés es denega perquè el compte
 # està desactivat, perquè la contrasenya és incorrecta o perquè falla el codi;
 # si totes les comprovacions necessàries són correctes, permet l'accés.
-is_acc_active = int(input("El compte està actiu? "))
-is_pass_ok = int(input("La contrasenya és correcta? "))
-is_double_verified = 0
-if is_acc_active == 0:
+is_acc_active = input("El compte està actiu (y/n)? ")
+is_pass_ok = input("La contrasenya és correcta (y/n) ?")
+is_double_verified = 'n'
+if is_acc_active == 'n':
     print("Accés denegat: compte no és actiu")
-elif is_pass_ok == 0:
+elif is_pass_ok == 'n':
     print("Accés denegat: contrasenya incorrecta")
 else:
-    is_double_verified = int(input("El codi de doble verificació és correcte? "))
-    if is_double_verified == 0:
+    is_double_verified = input("El codi de doble verificació és correcte? ")
+    if is_double_verified == 'n':
         print("Accés denegat: codi falla")
     else:
         print("Accés permes")
@@ -220,14 +220,14 @@ else:
 # d'usuaris. Assigna prioritat crítica si afecta un servei crític i no hi ha
 # alternativa, o si afecta almenys 50 usuaris i no hi ha alternativa; alta si
 # afecta almenys 10 usuaris o un servei crític; en qualsevol altre cas, baixa.
-is_critical_svc_affected = input("La incidència afecta un servei crític? ")
+is_critical_svc_affected = input("La incidència afecta un servei crític (y/n)? ")
 affected_users = int(input("Nombre d'usuaris afectats: "))
-is_alternative_available = int(input("Hi ha una alternative de connexió disponible? "))
+is_alternative_available = int(input("Hi ha una alternative de connexió disponible (y/n)? "))
 if affected_users < 0:
     print("Error: introdueix un valor positiu d'usuaris")
-elif (is_alternative_available == 0) and (is_critical_svc_affected == 1 or affected_users >= 50):
+elif (is_alternative_available == 'n') and (is_critical_svc_affected == 'y' or affected_users >= 50):
     print("Prioritat crítica!")
-elif affected_users >= 10 or is_critical_svc_affected == 1:
+elif affected_users >= 10 or is_critical_svc_affected == 'y':
     print("Prioritat alta!")
 else:
     print("Prioritat baixa")
