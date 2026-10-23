@@ -2,15 +2,72 @@
 # EXERCICIS
 ###
 
-# Exercici 1: Qualitat del senyal Wi-Fi
+# Exercici 1: Determinar el més gran de dos nombres
+# Demana a l'usuari que introdueixi dos nombres i mostra un missatge
+# que indiqui quin és més gran o si són iguals.
+a = float(input('Entra el primer nombre: '))
+b = float(input('Entra el segon nombre: '))
+if a == b:
+    print(f'{a} y {b} son iguals')
+elif a > b:
+    print(f'{a} és més gran que {b}')
+else:
+    print(f'{b} és més gran que {a}')
+
+# Exercici 2: Calculadora senzilla
+# Demana a l'usuari dos nombres i una operació (+, -, *, /).
+# Fes l'operació i mostra'n el resultat (gestiona la divisió per zero).
+a = float(input('Entra el primer nombre: '))
+b = float(input('Entra el segon nombre: '))
+op = input('Entra operació (+, -, *, /): ')
+if op == '+':
+    print(a+b)
+elif op == '-':
+    print(a-b)
+elif op == '*':
+    print(a*b)
+elif b != 0:
+    print(a/b)
+else:
+    print('No es pot dividir per 0!')
+
+# Exercici 3: Any de traspàs
+# Demana a l'usuari que introdueixi un any i determina si és de traspàs.
+# Un any és de traspàs si és divisible per 4, excepte si és divisible per 100
+# però no per 400.
+year = int(input('Entra un any: '))
+if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+    print(f'{year} es un any de traspàs')
+else:
+    print(f'{year} no es un any de traspàs')
+
+# Exercici 4: Classificar edats
+# Demana a l'usuari que introdueixi una edat i classifica-la en:
+# - Nadó (0-2 anys)
+# - Infant (3-12 anys)
+# - Adolescent (13-17 anys)
+# - Adult (18-64 anys)
+# - Persona gran (65 anys o més)
+age = int(input('Entra edat: '))
+if age < 0:
+    print('Edat invalida')
+elif age <= 2:
+    print('Nadó')
+elif age <= 12:
+    print('Infant')
+elif age <= 17:
+    print('Adolescent')
+elif age <= 64:
+    print('Adult')
+else:
+    print('Persona gran')
+
+# Exercici 5: Qualitat del senyal Wi-Fi
 # Demana el nivell de senyal rebut (RSSI) en dBm i classifica la cobertura:
 # - -50 dBm o superior: excel·lent
 # - Entre -67 dBm i menys de -50 dBm: bona
 # - Entre -75 dBm i menys de -67 dBm: feble
 # - Inferior a -75 dBm: molt feble
-import math
-
-
 dbm = float(input("Introdueix el nivell de senyal en dBm: "))
 if dbm >= -50:
     print("Excel·lent")
@@ -21,7 +78,7 @@ elif dbm >= -75:
 else:
     print("Molt feble")
 
-# Exercici 2: Nivell de recepció d'una connexió de fibra òptica
+# Exercici 6: Nivell de recepció d'una connexió de fibra òptica
 # Demana la potència òptica rebuda en dBm. Per a aquest exercici, considera
 # acceptable un nivell entre -27 dBm i -8 dBm, ambdós inclosos.
 # Indica si el nivell és massa baix, acceptable o massa alt.
@@ -33,7 +90,7 @@ elif power >= -27:
 else:
     print("Massa baix")
 
-# Exercici 3: Consum mensual de dades mòbils
+# Exercici 7: Consum mensual de dades mòbils
 # Demana el consum de dades en GB d'una línia mòbil. El pla inclou 20 GB.
 # Indica si el consum és dins del límit o si l'ha superat; en aquest últim cas,
 # calcula quants GB addicionals s'han consumit.
@@ -46,7 +103,7 @@ else:
     additional_gb = round(abs(consumed_gb - plan_gb), 2)
     print(f"Has consumit {additional_gb} GB addicionals")
 
-# Exercici 4: Diagnòstic d'una connexió de fibra
+# Exercici 8: Diagnòstic d'una connexió de fibra
 # Demana si l'indicador LOS del terminal òptic està encès i si l'indicador
 # d'Internet del router està encès. Segons aquestes dues dades, indica si cal
 # revisar el cable de fibra, comprovar el servei del proveïdor o si la connexió
@@ -64,7 +121,7 @@ else:
 
 
 
-# Exercici 5: Bateria d'un sistema d'alimentació ininterrompuda (SAI)
+# Exercici 9: Bateria d'un sistema d'alimentació ininterrompuda (SAI)
 # Demana el percentatge de bateria disponible al SAI que alimenta un armari
 # de comunicacions. Indica si el nivell és crític (menys del 20 %), baix
 # (del 20 % al 49 %) o suficient (50 % o més). Rebutja valors fora del rang
@@ -79,7 +136,7 @@ elif battery_lvl < 50:
 else:
     print("El nivell de bateria és suficient")
 
-# Exercici 6: Qualitat d'una connexió de xarxa
+# Exercici 10: Qualitat d'una connexió de xarxa
 # Demana la latència en mil·lisegons i el percentatge de paquets perduts.
 # Rebutja una latència negativa o una pèrdua fora del rang del 0 % al 100 %.
 # Classifica la connexió com a excel·lent si la latència és de 30 ms o menys
@@ -100,7 +157,7 @@ else:
     print("Connexió deficient")
 
 
-# Exercici 7: Cost mensual d'un pla de dades
+# Exercici 11: Cost mensual d'un pla de dades
 # Demana el tipus de pla (bàsic o plus) i el consum mensual en GB.
 # El pla bàsic costa 10 € i inclou 10 GB; cada GB addicional costa 1,50 €.
 # El pla plus costa 20 € i inclou 30 GB; cada GB addicional costa 0,75 €.
@@ -124,7 +181,7 @@ else:
 
 
 
-# Exercici 8: Accés a un compte de client
+# Exercici 12: Accés a un compte de client
 # Demana si el compte està actiu, si la contrasenya és correcta i si el codi
 # de doble verificació és correcte. Demana el codi només si el compte és actiu
 # i la contrasenya és correcta. Indica si l'accés es denega perquè el compte
@@ -146,7 +203,7 @@ else:
 
 
 
-# Exercici 9: Diagnòstic d'un router
+# Exercici 13: Diagnòstic d'un router
 # Demana si el router està encès, si l'indicador LOS del terminal òptic està
 # encès i si l'indicador d'Internet del router està encès. Indica primer si
 # cal encendre el router; si ja està encès, comprova si cal revisar el cable
@@ -157,7 +214,7 @@ else:
 
 
 
-# Exercici 10: Prioritat d'una incidència de xarxa
+# Exercici 14: Prioritat d'una incidència de xarxa
 # Demana si la incidència afecta un servei crític, el nombre d'usuaris afectats
 # i si hi ha una alternativa de connexió disponible. Rebutja un nombre negatiu
 # d'usuaris. Assigna prioritat crítica si afecta un servei crític i no hi ha
